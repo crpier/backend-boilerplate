@@ -2,7 +2,9 @@ pipeline {
   agent none
   stages {
     stage("Init") {
-      echo "Nice, it works"
+      steps {
+        echo "Nice, it works"
+      }
     }
   }
 }
