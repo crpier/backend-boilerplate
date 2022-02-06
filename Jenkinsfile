@@ -1,5 +1,7 @@
 pipeline {
-  agent none
+  agent {
+    label 'kubeagent'
+  }
   stages {
     stage("Init") {
       steps {
