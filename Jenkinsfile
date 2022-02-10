@@ -1,12 +1,7 @@
-pipeline {
-  agent {
-    label 'kubeagent'
-  }
-  stages {
-    stage("Init") {
-      steps {
-        echo "Nice, it works"
-      }
+podTemplate {
+    node(POD_LABEL) {
+        stage('Run shell') {
+            sh 'echo hello world'
+        }
     }
-  }
 }
