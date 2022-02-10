@@ -7,7 +7,6 @@ pipeline {
 apiVersion: v1
 kind: Pod
 metadata:
-  namespace: jenkins-pods
   labels:
     some-label: some-label-value
 spec:
