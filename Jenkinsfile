@@ -8,7 +8,7 @@ pipeline {
     // }
     stage('CI: Code analysis') {
       steps {
-        sh "black backend"
+        sh "black --check backend"
       }
     }
   }
