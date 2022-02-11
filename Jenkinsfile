@@ -1,6 +1,21 @@
 pipeline {
   agent none
   stages {
+    stage('Build image') {
+      agent any
+      environment {
+        registry = "tiannaru/whisper"
+        registryCredential = 'dockertoken'
+      }
+      steps {
+        script {
+          dockerImage = docker.build registry + ":latest"
+          docker.withRegistry('', registryCredential) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
     stage('Code analysis') {
       agent {
         label 'python-ci'
