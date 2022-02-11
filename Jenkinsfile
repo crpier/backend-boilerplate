@@ -3,10 +3,10 @@ podTemplate(containers: [
   ]) {
 
     node(POD_LABEL) {
-        stage('Code analysis') {
+        stage('Continuous integration') {
             // git scm
             container('python-ci') {
-                stage('Build a Maven project') {
+                stage('CI: Code analysis') {
                   sh "ls -la"
                 }
             }
