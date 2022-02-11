@@ -27,7 +27,7 @@ spec:
           sh "ls -la"
           sh "whoami"
           dockerImage = docker.build registry + ":latest"
-          docker.withRegistry('', registryCredential) {
+          docker.withRegistry('registry.hub.docker.com', registryCredential) {
             dockerImage.push()
           }
         }
