@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whisper
+  namespace: whisper
+  labels:
+    app: whisper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whisper
+  template:
+    metadata:
+      labels:
+        app: whisper
+    spec:
+      containers:
+      - name: whisper
+        image: tiannaru/whisper
+        env:
+        - name: DOCKER_IMAGE_BACKEND
+          value: backend
+        - name: DOCKER_IMAGE_CELERYWORKER
+          value: celeryworker
+        - name: DOCKER_IMAGE_FRONTEND
+          value: frontend
+        - name: DOMAIN
+          value: tiannaru.xyz
+        - name: EMAIL
+          value: admin@tiannaru.xyz
+        - name: PASSWORD
+          value: todo
+        - name: SMTP_HOST
+          value: tiannaru.xyz
+        - name: STACK_NAME
+          value: tiannaru-xyz
+        - name: TRAEFIK_PUBLIC_NETWORK
+          value: traefik-public
+        - name: TRAEFIK_PUBLIC_TAG
+          value: tiannaru-xyz
+        - name: TRAEFIK_TAG
+          value: tiannaru-xyz
+        - name: USERNAME
+          value: admin
+        - name: USE_HOSTNAME
+          value: tiannaru.xyz
+        - name: FRONTEND_ENV
+          value: production
+        - name: VUE_APP_DOMAIN_PROD
+          value: tiannaru.xyz
+        - name: BACKEND_CORS_ORIGIN
+          value: '["https://tiannaru.xyz", "http://tiannaru.xyz"]'
+        - name: PROJECT_NAME
+          value: whisper
+        - name: SERVER_NAME
+          value: backend.tiannaru.xyz
+        - name: SERVER_HOST
+          value: https://backend.tiannaru.xyz
+        - name: SENTRY_HOST
+          value: https://todo
+        - name: SENTRY_DSN
+          value: https://todo.example.com
+        - name: POSTGRES_SERVER
+          value: todo
+        - name: POSTGRES_USER
+          value: todo
+        - name: POSTGRES_PASSWORD
+          value: todo
+        - name: POSTGRES_DB
+          value: todo
+        - name: SQLALCHEMY_DATABASE_URI
+          value: postgresql://user:pass@example.com/db
+        - name: FIRST_SUPERUSER
+          value: todo@example.com
+        - name: FIRST_SUPERUSER_PASSWORD
+          value: todo
