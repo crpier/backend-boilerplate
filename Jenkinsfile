@@ -12,7 +12,7 @@ metadata:
 spec:
   containers:
   - name: jnlp
-    image: jenkins/jnlp:3.7-1-alpine
+    image: jenkins/inbound-agent:alpine-jdk11
     args: 
     - ${computer.jnlpmac} ${computer.name}
     tty: true
