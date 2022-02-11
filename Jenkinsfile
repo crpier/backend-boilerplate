@@ -14,7 +14,7 @@ pipeline {
                   args:
                   - 99d
               '''
-              defaultContainer 'whisper'
+              defaultContainer 'app'
             }
         }
       steps {
