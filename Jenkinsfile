@@ -6,8 +6,6 @@ pipeline {
           kubernetes {
               yaml '''
                 spec:
-                  securityContext:
-                    runAsUser: 1000
                   containers:
                   - name: whisper
                     image: tiannaru/whisper:latest
