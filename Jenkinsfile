@@ -3,29 +3,34 @@ pipeline {
       label 'python-ci'
     }
   stages {
-    // stage('Setup') {
-    //   checkout scm
-    // }
-    stage('CI: Code analysis') {
+    stage('Code analysis') {
       stages {
-        stage('black') {
+        stage('Code analysis: black') {
           steps {
-            sh "black --check backend"
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh "black --check backend"
+            }
           }
         }
-        stage('flake8') {
+        stage('Code analysis: flake8') {
           steps {
-            sh "flake8 backend"
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh "flake8 backend"
+            }
           }
         }
-        stage('pylint') {
+        stage('Code analysis: pylint') {
           steps {
-            sh "pylint backend"
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh "pylint backend"
+            }
           }
         }
-        stage('pydocstyle') {
+        stage('Code analysis: pydocstyle') {
           steps {
-            sh "pydocstyle backend"
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh "pydocstyle backend"
+            }
           }
         }
       }
