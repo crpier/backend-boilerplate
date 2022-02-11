@@ -1,5 +1,5 @@
 podTemplate(containers: [
-    containerTemplate(name: 'python-ci', image: 'tiannaru/python-ci', command: 'sleep', args: '99d'),
+    containerTemplate(name: 'python-ci', image: 'jenkins/inbound-agent:4.3-4', command: 'sleep', args: '99d'),
   ]) {
 
     node(POD_LABEL) {
