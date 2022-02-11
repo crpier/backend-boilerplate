@@ -17,7 +17,7 @@ pipeline {
               defaultContainer 'whisper'
             }
         }
-      container('whisper') {
+      steps {
           sh "pwd"
           sh "ls -la"
           sh "whoami"
