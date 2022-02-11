@@ -1,6 +1,25 @@
 pipeline {
   agent none
   stages {
+    stage('Unit tests') {
+      agent {
+          kubernetes {
+              yaml '''
+                spec:
+                containers:
+                - name: app
+                  image: tiannaru/whisper:latest
+                  command:
+                  - sleep
+                  args:
+                  - 99d
+              '''
+            }
+        }
+      steps {
+          sh "/usr/local/bin/pytest ."
+        }
+      }
     stage('Code analysis') {
       agent {
         label 'python-ci'
@@ -34,25 +53,6 @@ pipeline {
             }
           }
         }
-      }
-    }
-  stage('Unit tests') {
-    agent {
-        kubernetes {
-            yaml '''
-              spec:
-              containers:
-              - name: app
-                image: tiannaru/whisper:latest
-                command:
-                - sleep
-                args:
-                - 99d
-            '''
-          }
-      }
-    steps {
-        sh "pytest ."
       }
     }
   }
