@@ -7,14 +7,14 @@ pipeline {
               yaml '''
                 spec:
                 containers:
-                - name: app
+                - name: whisper
                   image: tiannaru/whisper:latest
                   command:
                   - sleep
                   args:
                   - 99d
               '''
-              defaultContainer 'app'
+              defaultContainer 'whisper'
             }
         }
       steps {
