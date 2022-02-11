@@ -17,6 +17,10 @@ pipeline {
             }
         }
       steps {
+          sh "pwd"
+          sh "ls -la"
+          sh "whoami"
+          sh "ls -la /usr/local/bin"
           sh "/usr/local/bin/pytest ."
         }
       }
