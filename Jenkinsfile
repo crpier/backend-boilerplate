@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    label 'python-ci'
-  }
+  agent any
   stages {
     // stage('Setup') {
     //   checkout scm
