@@ -1,6 +1,6 @@
 pipeline {
   agent {
-      label 'python-ci'
+    label 'python-ci'
     }
   stages {
     stage('Code analysis') {
