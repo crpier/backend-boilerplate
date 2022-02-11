@@ -20,7 +20,7 @@ pipeline {
                   hostPath:
                     path: /var/run/docker.sock
               '''
-              defaultContainer 'whisper'
+              defaultContainer 'dind'
             }
         }
       environment {
