@@ -3,8 +3,26 @@ pipeline {
   stages {
     stage('Build image') {
       agent {
-        label 'python-ci'
-      }
+          kubernetes {
+              yaml '''
+                spec:
+                  containers:
+                  - name: dind
+                    image: docker:1.11
+                    command:
+                    - cat
+                    tty: true
+                    volumeMounts:
+                    - name: dockersock
+                      mountPath: /var/run/docker.sock
+                  volumes:
+                  - name: dockersock
+                  hostPath:
+                    path: /var/run/docker.sock
+              '''
+              defaultContainer 'whisper'
+            }
+        }
       environment {
         registry = "tiannaru/whisper"
         registryCredential = 'dockertoken'
