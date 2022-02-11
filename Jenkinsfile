@@ -1,12 +1,12 @@
 podTemplate(containers: [
-    containerTemplate(name: 'python-ci', image: 'tiannaru/python-ci', command: 'sleep', args: '99d'),
+    containerTemplate(name: 'python-ci', image: 'tiannaru/python-ci'),
   ]) {
 
     node(POD_LABEL) {
         stage('Code analysis') {
             // git scm
             container('python-ci') {
-                stage('Build a Maven project') {
+                stage('Code analysis') {
                   sh "ls -la"
                 }
             }
