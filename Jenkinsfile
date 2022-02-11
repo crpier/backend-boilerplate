@@ -14,7 +14,7 @@ spec:
     securityContext:
       privileged: true
 '''
-              defaultContainer 'dind'
+              defaultContainer 'docker'
             }
         }
       environment {
