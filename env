@@ -16,3 +16,4 @@ export USE_HOSTNAME=tiannaru.xyz
 export FRONTEND_ENV=production
 export VUE_APP_DOMAIN_PROD=tiannaru.xyz
 export BACKEND_CORS_ORIGIN='["https://tiannaru.xyz", "http://tiannaru.xyz"]'
+
