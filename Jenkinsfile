@@ -7,11 +7,7 @@ podTemplate(containers: [
             // git scm
             container('maven') {
                 stage('Build a Maven project') {
-                    steps {
-                        script{
-                            sh "ls -la"
-                          }
-                      }
+                  sh "ls -la"
                 }
             }
         }
