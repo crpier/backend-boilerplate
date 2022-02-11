@@ -8,13 +8,13 @@ pipeline {
                 spec:
                   securityContext:
                     runAsUser: 1000
-                containers:
-                - name: whisper
-                  image: tiannaru/whisper:latest
-                  command:
-                  - sleep
-                  args:
-                  - 99d
+                  containers:
+                  - name: whisper
+                    image: tiannaru/whisper:latest
+                    command:
+                    - sleep
+                    args:
+                    - 99d
               '''
               defaultContainer 'whisper'
             }
