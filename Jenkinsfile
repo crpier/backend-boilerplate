@@ -2,7 +2,9 @@ pipeline {
   agent none
   stages {
     stage('Build image') {
-      agent any
+      agent {
+        label 'python-ci'
+      }
       environment {
         registry = "tiannaru/whisper"
         registryCredential = 'dockertoken'
