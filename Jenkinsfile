@@ -1,12 +1,14 @@
 pipeline {
-  agent any
+  agent {
+      label 'python-ci'
+    }
   stages {
     // stage('Setup') {
     //   checkout scm
     // }
     stage('CI: Code analysis') {
       steps {
-        sh "ls -la"
+        sh "black backend"
       }
     }
   }
