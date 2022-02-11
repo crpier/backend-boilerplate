@@ -1,7 +1,7 @@
 pipeline {
   agent none
   stages {
-    stage('Unit tests') {
+    stage('Component tests') {
       agent {
           kubernetes {
               yaml '''
