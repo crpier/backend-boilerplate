@@ -29,6 +29,9 @@ pipeline {
       }
       steps {
         script {
+          sh "pwd"
+          sh "ls -la"
+          sh "whoami"
           dockerImage = docker.build registry + ":latest"
           docker.withRegistry('', registryCredential) {
             dockerImage.push()
