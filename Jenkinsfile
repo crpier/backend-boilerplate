@@ -5,7 +5,7 @@ podTemplate(containers: [
     node(POD_LABEL) {
         stage('Code analysis') {
             // git scm
-            container('maven') {
+            container('python-ci') {
                 stage('Build a Maven project') {
                   sh "ls -la"
                 }
