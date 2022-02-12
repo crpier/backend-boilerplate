@@ -49,11 +49,10 @@ spec:
             }
         }
       steps {
-        // This is what giving up looks like. Jenkins is STUBBORNLY insisting
-        // on running in a "workspace/whisper_main" folder for some inane
-        // reason that probably didn'! even MAKE SENSE in 1984 when they
-        // put together 3 plugins that don't care for each other
-        // and called it an automation server
+        // We have to install this again because we cannot run the job
+        // in the folder where the virtualenv was created, and thus the
+        // hash that makes up the name of the venv won't be the same, 
+        // so we simply can't use it.
         sh "poetry install --no-root"
 
         sh "poetry run poetry exec lint"
@@ -77,7 +76,15 @@ spec:
             }
         }
       steps {
-          sh "/usr/local/bin/pytest ."
+        // The same workaround as above. We'll do this for every new image
+        // This is what giving up looks like. Jenkins is STUBBORNLY insisting
+        // on running in a "workspace/whisper_main" folder for some inane
+        // reason that probably didn't even MAKE SENSE in 1984 when they
+        // put together 3 plugins that don't care for each other
+        // and called it an "automation server"
+        sh "poetry install --no-root --no-dev"
+
+        sh "poetry run pytest ."
         }
       }
     stage('Build image') {
@@ -102,6 +109,8 @@ spec:
       }
       steps {
         script {
+          // God I just hate jenkins. If this is what modern software development
+          // looks like I'm writing my mcdonalds aplication form right now
           dockerImage = docker.build registry + ":latest", "-f build/dockerfiles/Dockerfile --build-arg INSTALL_DEV=true --cache-from tiannaru/whisper:latest ."
           docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
             dockerImage.push()
@@ -115,7 +124,7 @@ spec:
       }
       steps {
         // Workaround because kubectl doesn't do things in order and the 
-        // namespace doens't exist when the deployment is applied
+        // namespace doesn't exist when the deployment is applied
         sh "kubectl apply -f deploy/kubernetes/namespace.yaml"
         sh "kubectl apply -f deploy/kubernetes/"
       }
