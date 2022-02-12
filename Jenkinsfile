@@ -24,7 +24,7 @@ spec:
       steps {
         script {
           sh "docker pull tiannaru/whisper:latest-dev"
-          dockerImage = docker.build registry + ":latest-dev", "-f build/dockerfiles/Dockerfile --build-arg INSTALL_DEV=true ."
+          dockerImage = docker.build registry + ":latest-dev", "-f build/dockerfiles/Dockerfile --build-arg INSTALL_DEV=true --cache-from tiannaru/whisper:latest-dev ."
           docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
             dockerImage.push()
           }
@@ -48,18 +48,10 @@ spec:
             }
         }
       steps {
-          sh "pwd"
-          sh "whoami"
-          sh "ls -la /root/.cache"
-          sh 'echo "echo $PATH" > sc.sh'
-          sh "chmod +x sc.sh"
-          sh 'poetry run bash -c "./sc.sh"'
-          sh "which poetry"
-          sh "poetry --version"
-          sh "/root/.local/bin/poetry run whoami"
-          sh "/root/.local/bin/poetry run echo $PATH"
-          sh "/root/.local/bin/poetry run ls -laR /root/.cache/pypoetry/virtualenvs/*/bin/"
+          sh "/root/.local/bin/poetry --version"
           sh "/root/.local/bin/poetry run which python"
+          sh "/root/.local/bin/poetry run echo $PATH"
+          sh "/root/.local/bin/poetry run ls -laR /root/.cache/pypoetry/virtualenvs/*/bin"
           sh "/root/.local/bin/poetry run python -m mypy"
           sh "/root/.local/bin/poetry run scripts/lint.sh"
           sh "/root/.local/bin/poetry run mypy"
@@ -107,7 +99,7 @@ spec:
       }
       steps {
         script {
-          dockerImage = docker.build registry + ":latest", "-f build/dockerfiles/Dockerfile --build-arg INSTALL_DEV=true ."
+          dockerImage = docker.build registry + ":latest", "-f build/dockerfiles/Dockerfile --build-arg INSTALL_DEV=true --cache-from tiannaru/whisper:latest ."
           docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
             dockerImage.push()
           }
