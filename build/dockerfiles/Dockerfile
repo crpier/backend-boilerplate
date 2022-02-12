@@ -8,11 +8,11 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 RUN ln -s /root/.local/bin/poetry /usr/local/bin/poetry
 
 # Copy poetry.lock* in case it doesn't exist in the repo
-RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; else poetry install --no-root --no-dev ; fi"
+COPY ./pyproject.toml ./app/poetry.lock* /app/
 
 # Allow installing dev dependencies to run tests
 ARG INSTALL_DEV=false
-RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then /root/.local/bin/poetry install --no-root ; else /root/.local/bin/poetry install --no-root --no-dev ; fi"
+RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; else poetry install --no-root --no-dev ; fi"
 
 COPY . /app
 ENV PYTHONPATH=/app
