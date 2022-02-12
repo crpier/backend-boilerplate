@@ -26,7 +26,7 @@ spec:
           sh "pwd"
           sh "ls -la"
           sh "whoami"
-          dockerImage = docker.build registry + ":latest-dev", "--build-arg INSTALL_DEV=true"
+          dockerImage = docker.build registry + ":latest-dev", ". --build-arg INSTALL_DEV=true"
           docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
             dockerImage.push()
           }
