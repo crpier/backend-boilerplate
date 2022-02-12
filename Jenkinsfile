@@ -49,6 +49,7 @@ spec:
             }
         }
       steps {
+        dir("/app") {
           sh "pwd"
           sh "ls -la"
           sh "ls -la /root/.local/bin/poetry"
@@ -65,6 +66,7 @@ spec:
           sh "/root/.local/bin/poetry run scripts/lint.sh"
           sh "/root/.local/bin/poetry run mypy"
         }
+      }
     }
     stage('Component tests') {
       agent {
