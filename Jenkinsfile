@@ -55,6 +55,7 @@ spec:
         sh "poetry config virtualenvs.create false"
 
         sh "poetry config --list"
+        sh "ls -la /usr/local/bin"
         sh "scripts/lint.sh"
         }
     }
