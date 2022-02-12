@@ -6,9 +6,7 @@ pipeline {
         label 'python-ci'
       }
       steps {
-        sh "ls -la"
-        sh "pwd"
-        sh "kubectl get pods --all-namespaces"
+        sh "kubectl apply -f deploy/kubernetes/"
       }
     }
     stage('Code analysis') {
