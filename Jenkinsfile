@@ -53,11 +53,11 @@ spec:
     - 99d
     resources:
       limits:
-        cpu: 1
-        memory: 1Gi
+        cpu: 2
+        memory: 1.6Gi
       requests:
-        cpu: 0.5
-        memory: 500Mi
+        cpu: 1
+        memory: 800Mi
               '''
               defaultContainer 'whisper-dev'
             }
