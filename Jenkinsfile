@@ -49,8 +49,14 @@ spec:
             }
         }
       steps {
-          sh "poetry install --no-root"
-          sh "poetry run poetry exec lint"
+        // This is what giving up looks like. Jenkins is STUBBORNLY insisting
+        // on running in a "workspace/whisper_main" folder for some inane
+        // reason that probably didn'! even MAKE SENSE in 1984 when they
+        // put together 3 plugins that don't care for each other
+        // and called it an automation server
+        sh "poetry install --no-root"
+
+        sh "poetry run poetry exec lint"
         }
     }
     stage('Component tests') {
