@@ -50,6 +50,7 @@ spec:
       steps {
           sh "/root/.local/bin/poetry --version"
           sh "/root/.local/bin/poetry env info"
+          sh "/root/.local/bin/poetry debug info"
           sh "/root/.local/bin/poetry env list"
           sh "/root/.local/bin/poetry env use python3.9"
           sh "/root/.local/bin/poetry config --list"
