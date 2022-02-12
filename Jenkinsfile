@@ -48,9 +48,12 @@ spec:
             }
         }
       steps {
+          sh "pwd"
+          sh "whoami"
+          sh "ls -la /root/.cache"
           sh "which poetry"
           sh "poetry --version"
-          sh "poetry run scripts/lint.sh"
+          sh "/root/.local/bin/poetry run scripts/lint.sh"
         }
     }
     stage('Component tests') {
