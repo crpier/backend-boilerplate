@@ -40,9 +40,7 @@ spec:
   - name: whisper-dev
     image: tiannaru/whisper:latest-dev
     command:
-    - sleep
-    args:
-    - 99d
+    - cat
               '''
               defaultContainer 'whisper-dev'
             }
