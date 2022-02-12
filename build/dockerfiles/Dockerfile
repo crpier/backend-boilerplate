@@ -11,9 +11,10 @@ RUN ln -s /root/.local/bin/poetry /usr/local/bin/poetry
 COPY ./pyproject.toml ./app/poetry.lock* /app/
 
 RUN poetry config virtualenvs.create false
-# Allow installing dev dependencies to run tests
+RUN poetry install --no-root
+
 ARG INSTALL_DEV=false
-RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then poetry install --no-root ; else poetry install --no-root --no-dev ; fi"
+RUN bash -c "if [ $INSTALL_DEV == 'true' ] ; then  poetry install --no-root --dev-only ; fi"
 
 COPY . /app
 ENV PYTHONPATH=/app
