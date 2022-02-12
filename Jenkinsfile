@@ -7,17 +7,19 @@ pipeline {
             yaml '''
               spec:
                 containers:
-                - name: whisper
+                - name: kubectl
                   image: bitnami/kubectl:latest
                   command:
                   - sleep
                   args:
                   - 99d
             '''
-            defaultContainer 'whisper'
+            defaultContainer 'kubectl'
           }
       }
       steps {
+        sh "ls -la"
+        sh "pwd"
         sh "kubectl get pods --all-namespaces"
       }
     }
