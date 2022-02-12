@@ -47,6 +47,8 @@ spec:
             }
         }
       steps {
+          sh "ls -la"
+          sh "pwd"
           sh "poetry run poetry exec lint"
         }
     }
