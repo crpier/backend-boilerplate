@@ -55,7 +55,7 @@ spec:
         sh "poetry config virtualenvs.create false"
 
         sh "poetry config --list"
-        sh "poetry run poetry exec lint"
+        sh "poetry exec lint"
         }
     }
     stage('Build image') {
