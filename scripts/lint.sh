@@ -3,20 +3,21 @@
 set -x
 
 status=0
-mypy app
-if [ "$?" == "0" ];then 
+
+if ! mypy app; then 
   status=1
 fi
-black app --check
-if [ "$?" == "0" ];then 
+
+if ! black app --check; then 
   status=1
 fi
-flake8 app
-if [ "$?" == "0" ];then 
+
+if ! flake8 app; then 
   status=1
 fi
-isort --check-only app
-if [ "$?" == "0" ];then 
+
+if ! isort --check-only app; then 
   status=1
 fi
+
 exit $status
