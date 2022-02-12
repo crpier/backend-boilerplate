@@ -58,35 +58,6 @@ spec:
         sh "poetry run poetry exec lint"
         }
     }
-    stage('Component tests') {
-      agent {
-          kubernetes {
-              yaml '''
-spec:
-  containers:
-  - name: whisper
-    image: tiannaru/whisper:latest
-    workingDir: "/app"
-    command:
-    - sleep
-    args:
-    - 99d
-              '''
-              defaultContainer 'whisper'
-            }
-        }
-      steps {
-        // The same workaround as above. We'll do this for every new image
-        // This is what giving up looks like. Jenkins is STUBBORNLY insisting
-        // on running in a "workspace/whisper_main" folder for some inane
-        // reason that probably didn't even MAKE SENSE in 1984 when they
-        // put together 3 plugins that don't care for each other
-        // and called it an "automation server"
-        sh "poetry install --no-root --no-dev"
-
-        sh "poetry run pytest ."
-        }
-      }
     stage('Build image') {
       agent {
           kubernetes {
@@ -118,6 +89,35 @@ spec:
         }
       }
     }
+    stage('Component tests') {
+      agent {
+          kubernetes {
+              yaml '''
+spec:
+  containers:
+  - name: whisper
+    image: tiannaru/whisper:latest
+    workingDir: "/app"
+    command:
+    - sleep
+    args:
+    - 99d
+              '''
+              defaultContainer 'whisper'
+            }
+        }
+      steps {
+        // The same workaround as above. We'll do this for every new image
+        // This is what giving up looks like. Jenkins is STUBBORNLY insisting
+        // on running in a "workspace/whisper_main" folder for some inane
+        // reason that probably didn't even MAKE SENSE in 1984 when they
+        // put together 3 plugins that don't care for each other
+        // and called it an "automation server"
+        sh "poetry install --no-root --no-dev"
+
+        sh "poetry run pytest ."
+        }
+      }
     stage('Deployment: Staging') {
       agent {
         label 'python-ci'
