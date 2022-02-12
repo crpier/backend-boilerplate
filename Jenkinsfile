@@ -32,7 +32,19 @@ spec:
     }
     stage('Code analysis') {
       agent {
-        label 'python-ci'
+          kubernetes {
+              yaml '''
+spec:
+  containers:
+  - name: whisper
+    image: tiannaru/whisper:latest-dev
+    command:
+    - sleep
+    args:
+    - 99d
+              '''
+              defaultContainer 'whisper'
+            }
         }
       steps {
           sh "scripts/lint.sh"
