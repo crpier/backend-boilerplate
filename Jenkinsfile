@@ -1,34 +1,24 @@
 pipeline {
   agent none
   stages {
-    stage('Build image') {
+    stage('Deployment: Staging') {
       agent {
-          kubernetes {
-              yaml '''
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: docker
-    image: docker:19.03.1-dind
-    securityContext:
-      privileged: true
-'''
-              defaultContainer 'docker'
-            }
-        }
-      environment {
-        registry = "tiannaru/whisper"
-        registryCredential = 'dockertoken'
-      }
-      steps {
-        script {
-          sh "pwd"
-          sh "ls -la"
-          sh "whoami"
-          dockerImage = docker.build registry + ":latest"
-          docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
-            dockerImage.push()
+        kubernetes {
+            yaml '''
+              spec:
+                containers:
+                - name: whisper
+                  image: bitnami/kubectl:latest
+                  command:
+                  - sleep
+                  args:
+                  - 99d
+            '''
+            defaultContainer 'whisper'
+          }
+        stage('Deploy') {
+          steps {
+            sh "kubectl get pods --all-namespaces"
           }
         }
       }
@@ -88,5 +78,37 @@ spec:
           sh "/usr/local/bin/pytest ."
         }
       }
+    stage('Build image') {
+      agent {
+          kubernetes {
+              yaml '''
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: docker
+    image: docker:19.03.1-dind
+    securityContext:
+      privileged: true
+'''
+              defaultContainer 'docker'
+            }
+        }
+      environment {
+        registry = "tiannaru/whisper"
+        registryCredential = 'dockertoken'
+      }
+      steps {
+        script {
+          sh "pwd"
+          sh "ls -la"
+          sh "whoami"
+          dockerImage = docker.build registry + ":latest"
+          docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
   }
 }
