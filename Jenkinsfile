@@ -53,6 +53,7 @@ spec:
           sh "ls -la /root/.cache"
           sh "which poetry"
           sh "poetry --version"
+          sh "/root/.local/bin/poetry run ls -laR /root/.cache/pypoetry/virtualenvs/"
           sh "/root/.local/bin/poetry run scripts/lint.sh"
         }
     }
