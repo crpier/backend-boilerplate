@@ -49,7 +49,7 @@ spec:
             }
         }
       steps {
-        sh "poetry exec lint"
+        sh "./scripts/lint.sh"
         }
     }
     stage('Build image') {
