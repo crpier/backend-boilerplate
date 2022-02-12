@@ -51,7 +51,7 @@ spec:
       steps {
           sh "ls -la"
           sh "pwd"
-          sh "poetry run poetry exec lint"
+          sh "poetry run scripts/lint.sh"
         }
     }
     stage('Component tests') {
