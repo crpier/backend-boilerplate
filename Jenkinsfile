@@ -13,13 +13,6 @@ spec:
     image: docker:19.03.1-dind
     securityContext:
       privileged: true
-    resources:
-      limits:
-        cpu: 1
-        memory: 1Gi
-      requests:
-        cpu: 0.5
-        memory: 500Mi
 '''
               defaultContainer 'docker'
             }
@@ -51,13 +44,6 @@ spec:
     - sleep
     args:
     - 99d
-    resources:
-      limits:
-        cpu: 2
-        memory: 1.6Gi
-      requests:
-        cpu: 1
-        memory: 800Mi
               '''
               defaultContainer 'whisper-dev'
             }
@@ -78,13 +64,6 @@ spec:
     image: docker:19.03.1-dind
     securityContext:
       privileged: true
-    resources:
-      limits:
-        cpu: 1
-        memory: 1Gi
-      requests:
-        cpu: 0.5
-        memory: 500Mi
 '''
               defaultContainer 'docker'
             }
@@ -117,13 +96,6 @@ spec:
     - sleep
     args:
     - 99d
-    resources:
-      limits:
-        cpu: 1
-        memory: 1Gi
-      requests:
-        cpu: 0.5
-        memory: 500Mi
               '''
               defaultContainer 'whisper'
             }
