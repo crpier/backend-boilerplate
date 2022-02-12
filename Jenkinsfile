@@ -8,7 +8,7 @@ pipeline {
               spec:
                 containers:
                 - name: kubectl
-                  image: bitnami/kubectl:latest
+                  image: bitnami/kubectl:1.22.6-debian-10-r21
                   command:
                   - sleep
                   args:
