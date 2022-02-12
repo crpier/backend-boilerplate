@@ -48,7 +48,6 @@ spec:
             }
         }
       steps {
-          sh "python lol.py"
           sh "pwd"
           sh "ls -la /root/.local/bin/poetry"
           sh "/root/.local/bin/poetry --version"
