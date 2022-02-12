@@ -25,8 +25,7 @@ alembic = "^1.7.6"
 SQLAlchemy = "^1.4.31"
 python-jose = "^3.3.0"
 
-[tool.poetry.group.dev.dependencies]
-poetry-exec-plugin = "^0.3.2"
+[tool.poetry.dev-dependencies]
 mypy = "^0.931"
 black = "^22.1.0"
 isort = "^5.10.1"
@@ -35,7 +34,6 @@ flake8 = "^4.0.1"
 pytest = "^7.0.1"
 sqlalchemy-stubs = "^0.4"
 pytest-cov = "^3.0.0"
-pylint = "^2.12.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -50,9 +48,6 @@ line_length = 79
 [tool.black]
 line-length = 79
 target-version = ['py39']
-
-[tool.poetry-exec-plugin.commands]
-lint = "scripts/lint.sh"
 
 [tool.pylint.'MESSAGES CONTROL']
 disable = ["E0611"]
