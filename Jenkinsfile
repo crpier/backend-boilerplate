@@ -16,13 +16,13 @@ pipeline {
             '''
             defaultContainer 'whisper'
           }
-        stage('Deploy') {
-          steps {
-            sh "kubectl get pods --all-namespaces"
-          }
+      }
+      stage('Deploy') {
+        steps {
+          sh "kubectl get pods --all-namespaces"
         }
       }
-    }
+      }
     stage('Code analysis') {
       agent {
         label 'python-ci'
