@@ -55,6 +55,7 @@ spec:
         /* sh "poetry install --no-root" */
 
         sh "ls -la /usr/local/bin"
+        sh "which poetry"
         sh "poetry config --list"
         sh "poetry run poetry exec lint"
         }
