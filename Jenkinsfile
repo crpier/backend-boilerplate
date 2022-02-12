@@ -48,6 +48,7 @@ spec:
             }
         }
       steps {
+          sh "ls -la /root/.local/bin/poetry"
           sh "/root/.local/bin/poetry --version"
           sh "/root/.local/bin/poetry env info"
           sh "/root/.local/bin/poetry debug info"
