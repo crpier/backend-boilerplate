@@ -51,6 +51,7 @@ spec:
           sh "/root/.local/bin/poetry --version"
           sh "/root/.local/bin/poetry env info"
           sh "/root/.local/bin/poetry env list"
+          sh "/root/.local/bin/poetry config --list"
           sh "/root/.local/bin/poetry run which python"
           sh "/root/.local/bin/poetry run echo $PATH"
           sh "/root/.local/bin/poetry run ls -laR /root/.cache/pypoetry/virtualenvs/*/bin"
