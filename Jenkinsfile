@@ -53,7 +53,7 @@ spec:
         // in the folder where the virtualenv was created, and thus the
         // hash that makes up the name of the venv won't be the same, 
         // so we simply can't use it.
-        sh "poetry install --no-root"
+        /* sh "poetry install --no-root" */
 
         sh "poetry run poetry exec lint"
         }
