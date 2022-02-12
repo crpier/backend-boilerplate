@@ -57,7 +57,7 @@ spec:
         sh "ls -la /usr/local/bin"
         sh "which poetry"
         sh "poetry config --list"
-        sh "sleep 30"
+        sh "sleep 90"
         sh "poetry run poetry exec lint"
         }
     }
