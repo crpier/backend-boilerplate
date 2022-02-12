@@ -4,7 +4,7 @@ WORKDIR /app/
 
 # Install Poetry
 # TODO make dependabot look at this, or put it in a file? 🤔
-RUN curl -sSL https://install.python-poetry.org | python3 -
+RUN curl -sSL https://install.python-poetry.org | POETRY_VERSION=1.2.0a2 python3 -
 RUN ln -s /root/.local/bin/poetry /usr/local/bin/poetry
 
 # Copy poetry.lock* in case it doesn't exist in the repo
