@@ -49,6 +49,7 @@ spec:
         }
       steps {
           sh "pwd"
+          sh "ls -la"
           sh "ls -la /root/.local/bin/poetry"
           sh "/root/.local/bin/poetry --version"
           sh "/root/.local/bin/poetry env info"
