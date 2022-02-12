@@ -55,6 +55,7 @@ spec:
         // so we simply can't use it.
         /* sh "poetry install --no-root" */
 
+        sh "poetry config --list"
         sh "poetry run poetry exec lint"
         }
     }
