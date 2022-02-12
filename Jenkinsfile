@@ -49,13 +49,7 @@ spec:
             }
         }
       steps {
-        // We have to install this again because we cannot run the job
-        // in the folder where the virtualenv was created, and thus the
-        // hash that makes up the name of the venv won't be the same, 
-        // so we simply can't use it.
-        /* sh "poetry install --no-root" */
-
-        sh "poetry run poetry exec lint"
+        sh "poetry exec lint"
         }
     }
     stage('Build image') {
@@ -97,6 +91,7 @@ spec:
   containers:
   - name: whisper
     image: tiannaru/whisper:latest
+    imagePullPolicy: Always
     command:
     - sleep
     args:
@@ -106,14 +101,6 @@ spec:
             }
         }
       steps {
-        // The same workaround as above. We'll do this for every new image
-        // This is what giving up looks like. Jenkins is STUBBORNLY insisting
-        // on running in a "workspace/whisper_main" folder for some inane
-        // reason that probably didn't even MAKE SENSE in 1984 when they
-        // put together 3 plugins that don't care for each other
-        // and called it an "automation server"
-        sh "poetry install --no-root --no-dev"
-
         sh "poetry run pytest ."
         }
       }
