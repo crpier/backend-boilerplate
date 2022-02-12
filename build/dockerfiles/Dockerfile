@@ -10,7 +10,7 @@ RUN ln -s /root/.local/bin/poetry /usr/local/bin/poetry
 # Copy poetry.lock* in case it doesn't exist in the repo
 COPY ./pyproject.toml ./app/poetry.lock* /app/
 
-RUN poetry install --no-root
+RUN poetry install --no-root --no-dev
 
 # Allow installing dev dependencies to run tests
 ARG INSTALL_DEV=false

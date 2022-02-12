@@ -58,7 +58,7 @@ spec:
           sh "poetry --version"
           sh "/root/.local/bin/poetry run whoami"
           sh "/root/.local/bin/poetry run echo $PATH"
-          sh "/root/.local/bin/poetry run ls -laR /root/.cache/pypoetry/virtualenvs/"
+          sh "/root/.local/bin/poetry run ls -laR /root/.cache/pypoetry/virtualenvs/*/bin/"
           sh "/root/.local/bin/poetry run which python"
           sh "/root/.local/bin/poetry run python -m mypy"
           sh "/root/.local/bin/poetry run scripts/lint.sh"
