@@ -47,7 +47,7 @@ spec:
             }
         }
       steps {
-          sh "scripts/lint.sh"
+          sh "poetry run poetry exec lint"
         }
     }
     stage('Component tests') {
