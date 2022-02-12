@@ -48,15 +48,14 @@ spec:
             }
         }
       steps {
-        // I really have no idea why we have to do this again, after we did it
-        // in the docker build stage. But Jenkins is forcing my hand time and
-        // again and at least this conecession on my part doesn't cost me
-        // 5 minutes of build time like others would
-        sh "poetry config virtualenvs.create false"
+        // We have to install this again because we cannot run the job
+        // in the folder where the virtualenv was created, and thus the
+        // hash that makes up the name of the venv won't be the same, 
+        // so we simply can't use it.
+        /* sh "poetry install --no-root" */
 
         sh "poetry config --list"
-        sh "ls -la /usr/local/bin"
-        sh "scripts/lint.sh"
+        sh "poetry run poetry exec lint"
         }
     }
     stage('Build image') {
