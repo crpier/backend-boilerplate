@@ -39,7 +39,6 @@ spec:
   containers:
   - name: whisper-dev
     image: tiannaru/whisper:latest-dev
-    workingDir: "/app"
     command:
     - sleep
     args:
@@ -98,7 +97,6 @@ spec:
   containers:
   - name: whisper
     image: tiannaru/whisper:latest
-    workingDir: "/app"
     command:
     - sleep
     args:
