@@ -3,19 +3,7 @@ pipeline {
   stages {
     stage('Deployment: Staging') {
       agent {
-        kubernetes {
-            yaml '''
-              spec:
-                containers:
-                - name: kubectl
-                  image: bitnami/kubectl:1.22.6-debian-10-r21
-                  command:
-                  - sleep
-                  args:
-                  - 99d
-            '''
-            defaultContainer 'kubectl'
-          }
+        label 'python-ci'
       }
       steps {
         sh "ls -la"
