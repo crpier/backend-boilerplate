@@ -1,6 +1,38 @@
 pipeline {
   agent none
   stages {
+    stage('Build dev image') {
+      agent {
+          kubernetes {
+              yaml '''
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: docker
+    image: docker:19.03.1-dind
+    securityContext:
+      privileged: true
+'''
+              defaultContainer 'docker'
+            }
+        }
+      environment {
+        registry = "tiannaru/whisper"
+        registryCredential = 'dockertoken'
+      }
+      steps {
+        script {
+          sh "pwd"
+          sh "ls -la"
+          sh "whoami"
+          dockerImage = docker.build registry + ":latest-dev", "--build-arg INSTALL_DEV=true"
+          docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
     stage('Code analysis') {
       agent {
         label 'python-ci'
@@ -13,14 +45,14 @@ pipeline {
       agent {
           kubernetes {
               yaml '''
-                spec:
-                  containers:
-                  - name: whisper
-                    image: tiannaru/whisper:latest
-                    command:
-                    - sleep
-                    args:
-                    - 99d
+spec:
+  containers:
+  - name: whisper
+    image: tiannaru/whisper:latest
+    command:
+    - sleep
+    args:
+    - 99d
               '''
               defaultContainer 'whisper'
             }
