@@ -23,7 +23,7 @@ spec:
       }
       steps {
         script {
-          dockerImage = docker.build registry + ":latest-dev", "-f build/dockerfiles/Dockerfile --build-arg INSTALL_DEV=true ."
+          dockerImage = docker.build registry + ":latest-dev", "-f build/dockerfiles/Dockerfile --build-arg INSTALL_DEV=true --cache-from tiannaru/whisper:latest-dev ."
           docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
             dockerImage.push()
           }
@@ -92,7 +92,7 @@ spec:
       }
       steps {
         script {
-          dockerImage = docker.build registry + ":latest"
+          dockerImage = docker.build registry + ":latest", "-f build/dockerfiles/Dockerfile --build-arg INSTALL_DEV=true --cache-from tiannaru/whisper:latest ."
           docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
             dockerImage.push()
           }
