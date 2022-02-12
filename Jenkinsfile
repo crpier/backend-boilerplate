@@ -39,8 +39,11 @@ spec:
   containers:
   - name: whisper-dev
     image: tiannaru/whisper:latest-dev
+    imagePullPolicy: Always
     command:
-    - cat
+    - sleep
+    args:
+    - 99d
               '''
               defaultContainer 'whisper-dev'
             }
