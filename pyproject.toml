@@ -26,6 +26,7 @@ SQLAlchemy = "^1.4.31"
 python-jose = "^3.3.0"
 
 [tool.poetry.dev-dependencies]
+poetry-exec-plugin = "^0.3.2"
 mypy = "^0.931"
 black = "^22.1.0"
 isort = "^5.10.1"
@@ -48,6 +49,9 @@ line_length = 79
 [tool.black]
 line-length = 79
 target-version = ['py39']
+
+[tool.poetry-exec-plugin.commands]
+lint = "scripts/lint.sh"
 
 [tool.pylint.'MESSAGES CONTROL']
 disable = ["E0611"]
