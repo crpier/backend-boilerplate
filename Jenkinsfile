@@ -49,24 +49,9 @@ spec:
             }
         }
       steps {
-        dir("/app") {
-          sh "pwd"
-          sh "ls -la"
-          sh "ls -la /root/.local/bin/poetry"
-          sh "/root/.local/bin/poetry --version"
-          sh "/root/.local/bin/poetry env info"
-          sh "/root/.local/bin/poetry debug info"
-          sh "/root/.local/bin/poetry env list"
-          sh "/root/.local/bin/poetry env use python3.9"
-          sh "/root/.local/bin/poetry config --list"
-          sh "/root/.local/bin/poetry run which python"
-          sh "/root/.local/bin/poetry run echo $PATH"
-          sh "/root/.local/bin/poetry run ls -laR /root/.cache/pypoetry/virtualenvs/*/bin"
-          sh "/root/.local/bin/poetry run python -m mypy"
-          sh "/root/.local/bin/poetry run scripts/lint.sh"
-          sh "/root/.local/bin/poetry run mypy"
+          sh "poetry install --no-root"
+          sh "poetry run poetry exec lint"
         }
-      }
     }
     stage('Component tests') {
       agent {
