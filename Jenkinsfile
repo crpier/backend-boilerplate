@@ -1,17 +1,6 @@
 pipeline {
   agent none
   stages {
-    stage('Deployment: Staging') {
-      agent {
-        label 'python-ci'
-      }
-      steps {
-        // Workaround because kubectl doesn't do things in order and the 
-        // namespace doens't exist when the deployment is applied
-        sh "kubectl apply -f deploy/kubernetes/namespace.yaml"
-        sh "kubectl apply -f deploy/kubernetes/"
-      }
-    }
     stage('Code analysis') {
       agent {
         label 'python-ci'
@@ -97,6 +86,17 @@ spec:
             dockerImage.push()
           }
         }
+      }
+    }
+    stage('Deployment: Staging') {
+      agent {
+        label 'python-ci'
+      }
+      steps {
+        // Workaround because kubectl doesn't do things in order and the 
+        // namespace doens't exist when the deployment is applied
+        sh "kubectl apply -f deploy/kubernetes/namespace.yaml"
+        sh "kubectl apply -f deploy/kubernetes/"
       }
     }
   }
