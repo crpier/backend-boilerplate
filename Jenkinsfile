@@ -55,10 +55,6 @@ spec:
         // so we simply can't use it.
         /* sh "poetry install --no-root" */
 
-        sh "ls -la /usr/local/bin"
-        sh "which poetry"
-        sh "poetry config --list"
-        sh "sleep 190"
         sh "poetry run poetry exec lint"
         }
     }
