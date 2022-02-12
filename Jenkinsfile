@@ -51,6 +51,9 @@ spec:
           sh "pwd"
           sh "whoami"
           sh "ls -la /root/.cache"
+          sh 'echo "echo $PATH" > sc.sh'
+          sh "chmod +x sc.sh"
+          sh 'poetry run bash -c "./sc.sh"'
           sh "which poetry"
           sh "poetry --version"
           sh "/root/.local/bin/poetry run whoami"
