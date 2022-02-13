@@ -1,6 +1,41 @@
 pipeline {
   agent none
   stages {
+    stage('Component tests') {
+      agent {
+          kubernetes {
+              yaml '''
+spec:
+  containers:
+  - name: whisper
+    image: tiannaru/whisper:latest
+    imagePullPolicy: Always
+    command:
+    - sleep
+    args:
+    - 99d
+  - name: mariadbtest
+    image: mariadb:10.7.1-focal
+    imagePullPolicy: Always
+    command:
+    - sleep
+    args:
+    - 99d
+    ports:
+    - containerPort: 3306
+    env:
+    - name: MARIADB_ROOT_PASSWORD
+      value: changethislol
+              '''
+              defaultContainer 'whisper'
+            }
+        }
+      steps {
+        sh "sleep 1000"
+        sh "python app/db/init_db.py"
+        sh ". app/tests/test_env.sh; PYTHONPATH=. pytest -m 'component and not celery'"
+        }
+      }
     stage('Build dev image') {
       agent {
           kubernetes {
@@ -92,41 +127,6 @@ spec:
         }
       }
     }
-    stage('Component tests') {
-      agent {
-          kubernetes {
-              yaml '''
-spec:
-  containers:
-  - name: whisper
-    image: tiannaru/whisper:latest
-    imagePullPolicy: Always
-    command:
-    - sleep
-    args:
-    - 99d
-  - name: mariadbtest
-    image: mariadb:10.7.1-focal
-    imagePullPolicy: Always
-    command:
-    - sleep
-    args:
-    - 99d
-    ports:
-    - containerPort: 3306
-    env:
-    - name: MARIADB_ROOT_PASSWORD
-      value: changethislol
-              '''
-              defaultContainer 'whisper'
-            }
-        }
-      steps {
-        sh "sleep 1000"
-        sh "python app/db/init_db.py"
-        sh ". app/tests/test_env.sh; PYTHONPATH=. pytest -m 'component and not celery'"
-        }
-      }
     stage('Deployment: Staging') {
       agent {
         label 'python-ci'
