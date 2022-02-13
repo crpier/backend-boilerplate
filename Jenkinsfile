@@ -122,6 +122,7 @@ spec:
               sh "mysql -u localhost -P3306 --protocol tcp -pchangethislol -u root -e 'create database app'"
           }
           container("whisper") {
+            sh ". app/tests/test_env.sh; ./prestart.sh"
             sh ". app/tests/test_env.sh; python app/initial_data.py"
             sh ". app/tests/test_env.sh; PYTHONPATH=. pytest -m 'component and not celery'"
           }
