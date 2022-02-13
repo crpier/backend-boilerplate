@@ -1,10 +1,10 @@
-import pytest
 import logging
 
+import pytest
 from mock import MagicMock
-from app.models import Item
-from app.crud.base import CRUDBase
 
+from app.crud.base import CRUDBase
+from app.models import Item
 
 mocked_model = MagicMock()
 mock_session = MagicMock()

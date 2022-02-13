@@ -1,7 +1,8 @@
-import pytest
 import logging
 
+import pytest
 from mock import MagicMock
+
 from app.crud.crud_user import CRUDUser
 
 mocked_model = MagicMock()

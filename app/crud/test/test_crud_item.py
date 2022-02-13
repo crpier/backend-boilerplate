@@ -1,7 +1,8 @@
-import pytest
 import logging
 
+import pytest
 from mock import MagicMock
+
 from app.crud import crud_item
 
 mocked_db = MagicMock()
