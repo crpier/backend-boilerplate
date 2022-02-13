@@ -10,6 +10,8 @@ if TYPE_CHECKING:
 
 
 class Item(Base):
+    __tablename__ = "items"  # type: ignore # noqa
+
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255), index=True)
     description = Column(String(255), index=True)

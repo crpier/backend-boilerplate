@@ -10,6 +10,8 @@ if TYPE_CHECKING:
 
 
 class User(Base):
+    __tablename__ = "users"  # type: ignore # noqa
+
     id = Column(Integer, primary_key=True, index=True)
     full_name = Column(String(255), index=True)
     email = Column(String(255), unique=True, index=True, nullable=False)
