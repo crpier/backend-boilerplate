@@ -56,7 +56,7 @@ spec:
         }
         stage('Unit tests') {
           steps {
-            sh "source app/tests/test_env.sh; PYTHONPATH=. pytest -m unit"
+            sh ". app/tests/test_env.sh; PYTHONPATH=. pytest -m unit"
           }
         }
       }
