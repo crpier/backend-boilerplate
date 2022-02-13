@@ -1,3 +1,5 @@
+/usr/bin/env fish
+
 set -gx APP_PORT "80"
 set -gx SERVER_HOST "http://localhost:$APP_PORT"
 set -gx SENTRY_DSN ""

@@ -1,5 +1,6 @@
-export APP_PORT="80"
-export SERVER_HOST="http://localhost:$APP_PORT"
+#! /bin/bash
+
+export SERVER_HOST="http://localhost:80"
 export SENTRY_DSN=""
 export MARIADB_SERVER="todo"
 export MARIADB_USER="tadmin odo"

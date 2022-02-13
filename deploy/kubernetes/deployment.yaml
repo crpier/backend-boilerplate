@@ -18,10 +18,15 @@ spec:
       containers:
       - name: whisper
         image: tiannaru/whisper
+        imagePullPolicy: Always
         env:
-        - name: DOCKER_IMAGE_BACKEND
-          value: tiannaru/whisper:latest
-        - name: DOCKER_IMAGE_CELERYWORKER
-          value: tiannaru/celery-worker:latest
-        - name: DOMAIN
-          value: tiannaru.xyz
+        - name: SERVER_HOST
+          value: http://localhost:80
+        - name: SENTRY_DSN
+          value: ""
+        - name: SQLALCHEMY_DATABASE_URI
+          value: mariadb+pymysql://root:changethislol@mariadb-service.whisper.svc.cluster.local:3306/app
+        - name: FIRST_SUPERUSER
+          value: todo@example.com
+        - name: FIRST_SUPERUSER_PASSWORD
+          value: changethislol

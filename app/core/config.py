@@ -19,7 +19,8 @@ class Settings(BaseSettings):
     SECRET_KEY: str = secrets.token_urlsafe(32)
     # 60 minutes * 24 hours * 8 days = 8 days
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
-    SERVER_HOST: AnyHttpUrl
+    # TODO: validate this baseed on EMAILS_ENABLED or replace it with SMTP_HOST
+    SERVER_HOST: Optional[AnyHttpUrl]
     # BACKEND_CORS_ORIGINS is a JSON-formatted list of origins
     # e.g: '["http://localhost", "http://localhost:4200", "http://localhost:3000", \
     # "http://localhost:8080", "http://local.dockertoolbox.tiangolo.com"]'
@@ -44,10 +45,11 @@ class Settings(BaseSettings):
             return None
         return v
 
-    MARIADB_SERVER: str
-    MARIADB_USER: str
-    MARIADB_PASSWORD: str
-    MARIADB_DB: str
+    # TODO: why can't these just work???
+    # MARIADB_SERVER: str
+    # MARIADB_USER: str
+    # MARIADB_PASSWORD: str
+    # MARIADB_DB: str
 
     SQLALCHEMY_DATABASE_URI: Optional[MariaDBDsn] = None
 
