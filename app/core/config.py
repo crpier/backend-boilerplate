@@ -14,8 +14,9 @@ from pydantic import (
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
+
 class MariaDBDsn(AnyHttpUrl):
-    allowed_schemes = ["mariadb+pymysql"]
+    allowed_schemes = {"mariadb+pymysql"}
     user_required = True
     host_required = True
 
