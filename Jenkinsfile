@@ -31,7 +31,7 @@ spec:
         }
       }
     }
-    stage('Code analysis') {
+    stage('Commit stage') {
       agent {
           kubernetes {
               yaml '''
@@ -48,10 +48,30 @@ spec:
               defaultContainer 'whisper-dev'
             }
         }
-      steps {
-        sh "poetry exec lint"
+      stages {
+        stage('Linting') {
+          steps {
+            sh "scripts/lint.sh"
+          }
         }
-    }
+        stage('Unit tests') {
+          environment {
+            APP_PORT="80"
+            SERVER_HOST="http://localhost:$APP_PORT"
+            SENTRY_DSN=""
+            POSTGRES_SERVER="todo"
+            POSTGRES_USER="tadmin odo"
+            POSTGRES_PASSWORD="todo"
+            POSTGRES_DB="todo"
+            SQLALCHEMY_DATABASE_URI="postgresql://todo:todo@todo"
+            FIRST_SUPERUSER="todo@example.com"
+            FIRST_SUPERUSER_PASSWORD="todo"
+          }
+          steps {
+            sh "PYTHONPATH=. pytest -m unit"
+          }
+        }
+      }
     stage('Build image') {
       agent {
           kubernetes {

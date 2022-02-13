@@ -24,6 +24,8 @@ psycopg2-binary = "^2.9.3"
 alembic = "^1.7.6"
 SQLAlchemy = "^1.4.31"
 python-jose = "^3.3.0"
+bcrypt = "^3.2.0"
+mock = "^4.0.3"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.931"
@@ -50,3 +52,10 @@ target-version = ['py39']
 
 [tool.pylint.'MESSAGES CONTROL']
 disable = ["E0611"]
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+markers = [
+  "unit: unit tests for commit stage",
+]
