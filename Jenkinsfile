@@ -57,8 +57,8 @@ spec:
         stage('Unit tests') {
           environment {
             APP_PORT="80"
-            SERVER_HOST="http://localhost:$APP_PORT"
-            SENTRY_DSN=""
+            SERVER_HOST="http://localhost:80"
+            SENTRY_DSN="''"
             POSTGRES_SERVER="todo"
             POSTGRES_USER="tadmin odo"
             POSTGRES_PASSWORD="todo"
