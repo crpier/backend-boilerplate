@@ -47,7 +47,7 @@ spec:
               '''
               defaultContainer 'whisper-dev'
             }
-        }
+      }
       stages {
         stage('Linting') {
           steps {
@@ -72,6 +72,7 @@ spec:
           }
         }
       }
+    }
     stage('Build image') {
       agent {
           kubernetes {
