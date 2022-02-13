@@ -16,11 +16,11 @@ test_id = 1
 
 
 @pytest.fixture
-def test_base():
+def test_base() -> CRUDBase:
     return CRUDBase(Item)
 
 
 @pytest.mark.unit
-def test_get_returns_something(test_base: CRUDBase):
+def test_get_returns_something(test_base: CRUDBase) -> None:
     res = test_base.get(mock_session, test_id)
     assert res is not None

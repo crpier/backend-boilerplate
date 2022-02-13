@@ -22,7 +22,7 @@ def user() -> CRUDUser:
 
 
 @pytest.mark.unit
-def test_authenticate_invalid(user: CRUDUser):
+def test_authenticate_invalid(user: CRUDUser) -> None:
     """Test invalid user will not be authenticated"""
     with pytest.raises(Exception):
         user.authenticate(mock_session, email="", password="")

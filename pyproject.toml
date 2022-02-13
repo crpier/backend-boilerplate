@@ -27,6 +27,7 @@ bcrypt = "^3.2.0"
 mock = "^4.0.3"
 PyMySQL = "^1.0.2"
 alembic = "^1.7.6"
+types-mock = "^4.0.10"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.931"
@@ -62,3 +63,6 @@ markers = [
   "component: component tests that depend on services extenral to the python app but still in our codebase and deployment",
   "celery: tests that require celery to be up and running"
 ]
+
+[tool.mypy]
+python_version = "3.9"

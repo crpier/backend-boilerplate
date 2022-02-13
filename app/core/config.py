@@ -1,15 +1,8 @@
+import logging
 import secrets
 from typing import Any, Dict, List, Optional, Union
-import logging
 
-from pydantic import (
-    AnyHttpUrl,
-    BaseSettings,
-    EmailStr,
-    HttpUrl,
-    validator,
-)
-
+from pydantic import AnyHttpUrl, BaseSettings, EmailStr, HttpUrl, validator
 
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)

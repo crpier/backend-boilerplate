@@ -18,7 +18,7 @@ def crudItemData() -> crud_item.CRUDItem:
 
 
 @pytest.mark.unit
-def test_create_returns_result(crudItemData: crud_item.CRUDItem):
+def test_create_returns_result(crudItemData: crud_item.CRUDItem) -> None:
     res = crudItemData.create_with_owner(
         mocked_db, obj_in=mocked_db, owner_id=mocked_db
     )

@@ -51,8 +51,7 @@ spec:
       stages {
         stage('Linting') {
           steps {
-            /* sh "scripts/lint.sh" */
-            echo "linting is fine nothing to see here haha"
+            sh "scripts/lint.sh"
           }
         }
         stage('Unit tests') {

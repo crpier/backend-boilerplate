@@ -5,8 +5,7 @@ set -x
 status=0
 
 if ! mypy app; then 
-  ## TODO: fix back after I delete placeholder test
-  status=0
+  status=1
 fi
 
 if ! black app --check; then 
