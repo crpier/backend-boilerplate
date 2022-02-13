@@ -135,9 +135,8 @@ spec:
       steps {
         // Workaround because kubectl doesn't do things in order and the 
         // namespace doesn't exist when the deployment is applied
-        /* sh "kubectl apply -f deploy/kubernetes/namespace.yaml" */
-        /* sh "kubectl apply -f deploy/kubernetes/" */
-        echo "deployment is fine nothing to see here haha lol"
+        sh "kubectl apply -f deploy/kubernetes/namespace.yaml"
+        sh "kubectl apply -f deploy/kubernetes/"
       }
     }
   }
