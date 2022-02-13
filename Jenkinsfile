@@ -26,12 +26,14 @@ spec:
               defaultContainer 'whisper'
             }
         }
-      container("mariadbtest") {
-          sh "mysql -u localhost -P3306 --protocol tcp -pchangethislol -u root -e 'create database app'"
-        }
-      container("whisper") {
-        sh "python app/db/init_db.py"
-        sh ". app/tests/test_env.sh; PYTHONPATH=. pytest -m 'component and not celery'"
+        steps{
+          container("mariadbtest") {
+              sh "mysql -u localhost -P3306 --protocol tcp -pchangethislol -u root -e 'create database app'"
+          }
+          container("whisper") {
+            sh "python app/db/init_db.py"
+            sh ". app/tests/test_env.sh; PYTHONPATH=. pytest -m 'component and not celery'"
+          }
         }
       }
     stage('Build dev image') {
