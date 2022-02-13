@@ -1,41 +1,6 @@
 pipeline {
   agent none
   stages {
-    stage('Component tests') {
-      agent {
-          kubernetes {
-              yaml '''
-spec:
-  containers:
-  - name: whisper
-    image: tiannaru/whisper:latest
-    imagePullPolicy: Always
-    command:
-    - sleep
-    args:
-    - 99d
-  - name: mariadbtest
-    image: mariadb:10.7.1-focal
-    imagePullPolicy: Always
-    ports:
-    - containerPort: 3306
-    env:
-    - name: MARIADB_ROOT_PASSWORD
-      value: changethislol
-              '''
-              defaultContainer 'whisper'
-            }
-        }
-        steps{
-          container("mariadbtest") {
-              sh "mysql -u localhost -P3306 --protocol tcp -pchangethislol -u root -e 'create database app'"
-          }
-          container("whisper") {
-            sh ". app/tests/test_env.sh; python app/initial_data.py"
-            sh ". app/tests/test_env.sh; PYTHONPATH=. pytest -m 'component and not celery'"
-          }
-        }
-      }
     stage('Build dev image') {
       agent {
           kubernetes {
@@ -127,6 +92,41 @@ spec:
         }
       }
     }
+    stage('Component tests') {
+      agent {
+          kubernetes {
+              yaml '''
+spec:
+  containers:
+  - name: whisper
+    image: tiannaru/whisper:latest
+    imagePullPolicy: Always
+    command:
+    - sleep
+    args:
+    - 99d
+  - name: mariadbtest
+    image: mariadb:10.7.1-focal
+    imagePullPolicy: Always
+    ports:
+    - containerPort: 3306
+    env:
+    - name: MARIADB_ROOT_PASSWORD
+      value: changethislol
+              '''
+              defaultContainer 'whisper'
+            }
+        }
+        steps{
+          container("mariadbtest") {
+              sh "mysql -u localhost -P3306 --protocol tcp -pchangethislol -u root -e 'create database app'"
+          }
+          container("whisper") {
+            sh ". app/tests/test_env.sh; python app/initial_data.py"
+            sh ". app/tests/test_env.sh; PYTHONPATH=. pytest -m 'component and not celery'"
+          }
+        }
+      }
     stage('Deployment: Staging') {
       agent {
         label 'python-ci'
