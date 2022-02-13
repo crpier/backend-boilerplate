@@ -105,19 +105,25 @@ spec:
     - sleep
     args:
     - 99d
-  - name: mariadb
+  - name: mariadbtest
     image: mariadb:10.7.1-focal
     imagePullPolicy: Always
     command:
     - sleep
     args:
     - 99d
+    ports:
+    - containerPort: 3306
+    env:
+    - name: MARIADB_ROOT_PASSWORD
+      value: changethislol
               '''
               defaultContainer 'whisper'
             }
         }
       steps {
         sh "sleep 1000"
+        sh "python app/db/init_db.py"
         sh ". app/tests/test_env.sh; PYTHONPATH=. pytest -m 'component and not celery'"
         }
       }
