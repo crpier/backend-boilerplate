@@ -61,16 +61,8 @@ spec:
           value: https://todo
         - name: SENTRY_DSN
           value: https://todo.example.com
-        - name: POSTGRES_SERVER
-          value: todo
-        - name: POSTGRES_USER
-          value: todo
-        - name: POSTGRES_PASSWORD
-          value: todo
-        - name: POSTGRES_DB
-          value: todo
         - name: SQLALCHEMY_DATABASE_URI
-          value: postgresql://user:pass@example.com/db
+          value: mariadb+pymysql://user:pass@example.com/db
         - name: FIRST_SUPERUSER
           value: todo@example.com
         - name: FIRST_SUPERUSER_PASSWORD
