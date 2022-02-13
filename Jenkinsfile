@@ -17,10 +17,6 @@ spec:
   - name: mariadbtest
     image: mariadb:10.7.1-focal
     imagePullPolicy: Always
-    command:
-    - sleep
-    args:
-    - 99d
     ports:
     - containerPort: 3306
     env:
