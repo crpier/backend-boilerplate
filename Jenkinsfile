@@ -55,20 +55,8 @@ spec:
           }
         }
         stage('Unit tests') {
-          environment {
-            APP_PORT="80"
-            SERVER_HOST="http://localhost:80"
-            SENTRY_DSN=''
-            POSTGRES_SERVER="todo"
-            POSTGRES_USER="tadmin odo"
-            POSTGRES_PASSWORD="todo"
-            POSTGRES_DB="todo"
-            SQLALCHEMY_DATABASE_URI="postgresql://todo:todo@todo"
-            FIRST_SUPERUSER="todo@example.com"
-            FIRST_SUPERUSER_PASSWORD="todo"
-          }
           steps {
-            sh "PYTHONPATH=. pytest -m unit"
+            sh "source app/tests/test_env.sh; PYTHONPATH=. pytest -m unit"
           }
         }
       }
