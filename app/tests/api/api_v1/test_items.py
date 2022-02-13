@@ -4,7 +4,10 @@ from sqlalchemy.orm import Session
 from app.core.config import settings
 from app.tests.utils.item import create_random_item
 
+import pytest
 
+
+@pytest.mark.component
 def test_create_item(
     client: TestClient, superuser_token_headers: dict, db: Session
 ) -> None:
@@ -22,6 +25,7 @@ def test_create_item(
     assert "owner_id" in content
 
 
+@pytest.mark.component
 def test_read_item(
     client: TestClient, superuser_token_headers: dict, db: Session
 ) -> None:

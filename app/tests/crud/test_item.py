@@ -4,8 +4,9 @@ from app import crud
 from app.schemas.item import ItemCreate, ItemUpdate
 from app.tests.utils.user import create_random_user
 from app.tests.utils.utils import random_lower_string
+import pytest
 
-
+@pytest.mark.component
 def test_create_item(db: Session) -> None:
     title = random_lower_string()
     description = random_lower_string()
@@ -17,6 +18,7 @@ def test_create_item(db: Session) -> None:
     assert item.owner_id == user.id
 
 
+@pytest.mark.component
 def test_get_item(db: Session) -> None:
     title = random_lower_string()
     description = random_lower_string()
@@ -31,6 +33,7 @@ def test_get_item(db: Session) -> None:
     assert item.owner_id == stored_item.owner_id
 
 
+@pytest.mark.component
 def test_update_item(db: Session) -> None:
     title = random_lower_string()
     description = random_lower_string()
@@ -46,6 +49,7 @@ def test_update_item(db: Session) -> None:
     assert item.owner_id == item2.owner_id
 
 
+@pytest.mark.component
 def test_delete_item(db: Session) -> None:
     title = random_lower_string()
     description = random_lower_string()

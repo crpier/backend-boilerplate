@@ -3,8 +3,10 @@ from typing import Dict
 from fastapi.testclient import TestClient
 
 from app.core.config import settings
+import pytest
 
 
+@pytest.mark.component
 def test_get_access_token(client: TestClient) -> None:
     login_data = {
         "username": settings.FIRST_SUPERUSER,
@@ -19,6 +21,7 @@ def test_get_access_token(client: TestClient) -> None:
     assert tokens["access_token"]
 
 
+@pytest.mark.component
 def test_use_access_token(
     client: TestClient, superuser_token_headers: Dict[str, str]
 ) -> None:

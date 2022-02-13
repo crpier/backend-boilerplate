@@ -7,8 +7,9 @@ from app import crud
 from app.core.config import settings
 from app.schemas.user import UserCreate
 from app.tests.utils.utils import random_email, random_lower_string
+import pytest
 
-
+@pytest.mark.component
 def test_get_users_superuser_me(
     client: TestClient, superuser_token_headers: Dict[str, str]
 ) -> None:
@@ -22,6 +23,7 @@ def test_get_users_superuser_me(
     assert current_user["email"] == settings.FIRST_SUPERUSER
 
 
+@pytest.mark.component
 def test_get_users_normal_user_me(
     client: TestClient, normal_user_token_headers: Dict[str, str]
 ) -> None:
@@ -35,6 +37,7 @@ def test_get_users_normal_user_me(
     assert current_user["email"] == settings.EMAIL_TEST_USER
 
 
+@pytest.mark.component
 def test_create_user_new_email(
     client: TestClient, superuser_token_headers: dict, db: Session
 ) -> None:
@@ -53,6 +56,7 @@ def test_create_user_new_email(
     assert user.email == created_user["email"]
 
 
+@pytest.mark.component
 def test_get_existing_user(
     client: TestClient, superuser_token_headers: dict, db: Session
 ) -> None:
@@ -72,6 +76,7 @@ def test_get_existing_user(
     assert existing_user.email == api_user["email"]
 
 
+@pytest.mark.component
 def test_create_user_existing_username(
     client: TestClient, superuser_token_headers: dict, db: Session
 ) -> None:
@@ -91,6 +96,7 @@ def test_create_user_existing_username(
     assert "_id" not in created_user
 
 
+@pytest.mark.component
 def test_create_user_by_normal_user(
     client: TestClient, normal_user_token_headers: Dict[str, str]
 ) -> None:
@@ -105,6 +111,7 @@ def test_create_user_by_normal_user(
     assert r.status_code == 400
 
 
+@pytest.mark.component
 def test_retrieve_users(
     client: TestClient, superuser_token_headers: dict, db: Session
 ) -> None:
