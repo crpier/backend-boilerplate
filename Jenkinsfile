@@ -32,7 +32,6 @@ spec:
         }
       steps {
         sh "sleep 1000"
-        sh ". app/tests/test_env.sh"
         sh "python app/db/init_db.py"
         sh ". app/tests/test_env.sh; PYTHONPATH=. pytest -m 'component and not celery'"
         }
