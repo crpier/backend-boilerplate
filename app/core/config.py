@@ -39,11 +39,12 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "whisper"
     SENTRY_DSN: Optional[HttpUrl] = None
 
-    @validator("SENTRY_DSN", pre=True)
-    def sentry_dsn_can_be_blank(cls, v: str) -> Optional[str]:
-        if len(v) == 0:
-            return None
-        return v
+    # TODO
+    # @validator("SENTRY_DSN", pre=True)
+    # def sentry_dsn_can_be_blank(cls, v: str) -> Optional[str]:
+    #     if len(v) == 0:
+    #         return None
+    #     return v
 
     # TODO: why can't these just work???
     # MARIADB_SERVER: str
