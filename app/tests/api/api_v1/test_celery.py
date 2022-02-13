@@ -7,7 +7,9 @@ from app.core.config import settings
 import pytest
 
 
+# TODO config celery
 @pytest.mark.component
+@pytest.mark.celery
 def test_celery_worker_test(
     client: TestClient, superuser_token_headers: Dict[str, str]
 ) -> None:

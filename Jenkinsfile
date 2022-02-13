@@ -105,12 +105,20 @@ spec:
     - sleep
     args:
     - 99d
+  - name: mariadb
+    image: mariadb:10.7.1-focal
+    imagePullPolicy: Always
+    command:
+    - sleep
+    args:
+    - 99d
               '''
               defaultContainer 'whisper'
             }
         }
       steps {
-        sh "poetry run pytest ."
+        sh "sleep 1000"
+        sh ". app/tests/test_env.sh; PYTHONPATH=. pytest -m 'component and not celery'"
         }
       }
     stage('Deployment: Staging') {
