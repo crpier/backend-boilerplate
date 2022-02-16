@@ -7,3 +7,4 @@ about a minute to just downloading lmao
 - Add pre-commit maybe
 - Don't use the root user anymore in mariadb
 - Also certs man, you said you'd do it first thing this time
+- Choose output port via config

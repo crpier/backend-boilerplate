@@ -6,9 +6,7 @@ metadata:
 spec:
   selector:
     app: whisper
-  type: NodePort  
   ports:
   - protocol: TCP
     targetPort: 80
     port: 80
-    nodePort: 30000
