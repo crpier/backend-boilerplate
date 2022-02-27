@@ -1,7 +1,7 @@
+import logging
 from datetime import timedelta
 from typing import Any
 
-import logging
 from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
@@ -21,6 +21,7 @@ router = APIRouter()
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
+
 
 @router.post("/login/access-token", response_model=schemas.Token)
 def login_access_token(
