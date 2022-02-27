@@ -23,6 +23,8 @@ spec:
         env:
         - name: MARIADB_ROOT_PASSWORD
           value: changethislol 
+        - name: MARIADB_DATABASE
+          value: app
 ---
 #Maria
 apiVersion: v1
