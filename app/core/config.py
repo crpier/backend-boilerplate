@@ -107,4 +107,4 @@ class Settings(BaseSettings):
         case_sensitive = True
 
 
-settings = Settings(_secrets_dir='/vault/secrets')
+settings = Settings(_secrets_dir="/vault/secrets")  # type: ignore
