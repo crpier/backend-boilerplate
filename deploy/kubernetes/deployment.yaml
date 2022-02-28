@@ -12,17 +12,23 @@ spec:
       app: whisper
   template:
     metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'whisper'
+        vault.hashicorp.com/log-level: 'debug'
+        vault.hashicorp.com/agent-inject-status: 'update'
+        vault.hashicorp.com/agent-inject-secret-env: 'secret/whisper/main'
+        vault.hashicorp.com/agent-inject-template-env: |
+          {{- with secret "secret/whisper/main" -}}
+          SQLALCHEMY_DATABASE_URI=mariadb+pymysql://{{ .Data.first_db_user }}:{{ .Data.db_first_pass }}@mariadb-service.whisper.svc.cluster.local:3306/{{ .Data.db_name }}
+          FIRST_SUPERUSER={{ .Data.first_superuser }}
+          FIRST_SUPERUSER_PASSWORD={{ .Data.first_superuser_password }}
+          {{- end -}}
       labels:
         app: whisper
     spec:
+      serviceAccountName: whisper
       containers:
       - name: whisper
         image: tiannaru/whisper
         imagePullPolicy: Always
-        env:
-        - name: SQLALCHEMY_DATABASE_URI
-          value: mariadb+pymysql://root:changethislol@mariadb-service.whisper.svc.cluster.local:3306/app
-        - name: FIRST_SUPERUSER
-          value: todo@example.com
-        - name: FIRST_SUPERUSER_PASSWORD
-          value: changethislol
