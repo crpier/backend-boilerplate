@@ -85,6 +85,7 @@ spec:
         script {
           // God I just hate jenkins. If this is what modern software development
           // looks like I'm writing my mcdonalds aplication form right now
+          sh "docker pull tiannaru/whisper:latest"
           dockerImage = docker.build registry + ":latest", "-f build/dockerfiles/Dockerfile --build-arg INSTALL_DEV=true --cache-from tiannaru/whisper:latest-dev ."
           docker.withRegistry('https://index.docker.io/v1/', registryCredential) {
             dockerImage.push()
