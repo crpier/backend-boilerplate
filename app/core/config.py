@@ -52,25 +52,25 @@ class Settings(BaseSettings):
     # MARIADB_PASSWORD: str
     # MARIADB_DB: str
 
-    SQLALCHEMY_DATABASE_URI: Optional[MariaDBDsn] = None
+    SQLALCHEMY_DATABASE_URI: MariaDBDsn
 
-    @validator("SQLALCHEMY_DATABASE_URI", pre=True)
-    def assemble_db_connection(
-        cls, v: Optional[str], values: Dict[str, Any]
-    ) -> Any:
-        logger.info("v is %s", v)
-        logger.info("values  is %s", values)
-        if isinstance(v, str):
-            return v
-        a = MariaDBDsn.build(
-            scheme="mariad+pymysql",
-            user=values.get("MARIADB_USER"),
-            password=values.get("MARIADB_PASSWORD"),
-            host=values.get("MARIADB_SERVER"),
-            path=f"/{values.get('MARIADB_DB') or ''}",
-        )
-        logger.info("dsn is %s", a)
-        return a
+    # @validator("SQLALCHEMY_DATABASE_URI", pre=True)
+    # def assemble_db_connection(
+    #     cls, v: Optional[str], values: Dict[str, Any]
+    # ) -> Any:
+    #     logger.info("v is %s", v)
+    #     logger.info("values  is %s", values)
+    #     if isinstance(v, str):
+    #         return v
+    #     a = MariaDBDsn.build(
+    #         scheme="mariad+pymysql",
+    #         user=values.get("MARIADB_USER"),
+    #         password=values.get("MARIADB_PASSWORD"),
+    #         host=values.get("MARIADB_SERVER"),
+    #         path=f"/{values.get('MARIADB_DB') or ''}",
+    #     )
+    #     logger.info("dsn is %s", a)
+    #     return a
 
     SMTP_TLS: bool = True
     SMTP_PORT: Optional[int] = None
@@ -107,4 +107,4 @@ class Settings(BaseSettings):
         case_sensitive = True
 
 
-settings = Settings()
+settings = Settings(_secrets_dir='/vault/secrets')
