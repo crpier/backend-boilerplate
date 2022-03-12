@@ -9,10 +9,10 @@
 #     # cert-manager.io/cluster-issuer: ca-issuer
 #     ingress.kubernetes.io/force-ssl-redirect: "false"
 #     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-#     nginx.ingress.kubernetes.io/server-alias: db.backend-boilerplate.tiannaru.xyz
+#     nginx.ingress.kubernetes.io/server-alias: db.backend-boilerplate.crpier.xyz
 # spec:
 #   rules:
-#     - host: db.backend-boilerplate.tiannaru.xyz
+#     - host: db.backend-boilerplate.crpier.xyz
 #       http:
 #         paths:
 #           - path: /
@@ -21,5 +21,5 @@
 #               servicePort: 3306
 #   # tls:
 #   #   - hosts:
-#   #     - db.backend-boilerplate.tiannaru.xyz
+#   #     - db.backend-boilerplate.crpier.xyz
 #   #     secretName: backend-boilerplate-mariadb-tls
