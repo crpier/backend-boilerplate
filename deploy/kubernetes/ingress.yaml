@@ -1,21 +1,21 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: whisper-ingress
-  namespace: whisper
+  name: backend-boilerplate-ingress
+  namespace: backend-boilerplate
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   rules:
-    - host: whisper.tiannaru.xyz
+    - host: backend-boilerplate.tiannaru.xyz
       http:
         paths:
           - path: /
             backend:
-              serviceName: whisper-service
+              serviceName: backend-boilerplate-service
               servicePort: 80
   tls:
     - hosts:
-      - whisper.tiannaru.xyz
-      secretName: whisper-tls
+      - backend-boilerplate.tiannaru.xyz
+      secretName: backend-boilerplate-tls

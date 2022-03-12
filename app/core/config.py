@@ -36,7 +36,7 @@ class Settings(BaseSettings):
             return v
         raise ValueError(v)
 
-    PROJECT_NAME: str = "whisper"
+    PROJECT_NAME: str = "backend-boilerplate"
     SENTRY_DSN: Optional[HttpUrl] = None
 
     # TODO

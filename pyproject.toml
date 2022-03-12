@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "whisper"
+name = "backend-boilerplate"
 version = "0.1.0"
 description = "None"
 authors = ["Admin <admin@example.com>"]
