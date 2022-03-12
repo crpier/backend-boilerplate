@@ -4,7 +4,9 @@ Deployment is done with a Jenkins pipeline and the artifacts are Docker containe
 Made for the infrastructure setup in https://github.com/tiannaru/subsistence_infrastructure 
 
 ## Usage
-Just create a new repository using this one as a template.
+- create a new repository using this one as a template.
+- rename all references to `backend-boilerplate`
+- rename all references to `tiannaru`
 
 ### TODO list
 - Make the docker image slimmer with multi stage builds or smth
