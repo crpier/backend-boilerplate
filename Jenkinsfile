@@ -10,7 +10,7 @@ kind: Pod
 spec:
   containers:
   - name: docker
-    image: docker:19.03.1-dind
+    image: docker:19.03.15-dind
     securityContext:
       privileged: true
 '''
@@ -71,7 +71,7 @@ kind: Pod
 spec:
   containers:
   - name: docker
-    image: docker:19.03.1-dind
+    image: docker:19.03.15-dind
     securityContext:
       privileged: true
 '''
