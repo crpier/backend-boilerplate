@@ -11,6 +11,8 @@ spec:
   containers:
   - name: docker
     image: docker:19.03.1-dind
+    securityContext:
+      privileged: true
 '''
               defaultContainer 'docker'
             }
@@ -70,6 +72,8 @@ spec:
   containers:
   - name: docker
     image: docker:19.03.1-dind
+    securityContext:
+      privileged: true
 '''
               defaultContainer 'docker'
             }
