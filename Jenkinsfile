@@ -10,7 +10,7 @@ kind: Pod
 spec:
   containers:
   - name: docker
-    image: docker:20.10.10-dind-rootless
+    image: docker:dind
     securityContext:
       privileged: true
 '''
@@ -71,7 +71,7 @@ kind: Pod
 spec:
   containers:
   - name: docker
-    image: docker:20.10.10-dind-rootless
+    image: docker:dind
     securityContext:
       privileged: true
 '''
