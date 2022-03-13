@@ -10,7 +10,7 @@ kind: Pod
 spec:
   containers:
   - name: docker
-    image: docker:dind-rootless
+    image: docker:20.10.10-dind
 '''
               defaultContainer 'docker'
             }
@@ -69,7 +69,7 @@ kind: Pod
 spec:
   containers:
   - name: docker
-    image: docker:dind
+    image: docker:20.10.10-dind
 '''
               defaultContainer 'docker'
             }
