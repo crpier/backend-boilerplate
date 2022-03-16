@@ -12,3 +12,4 @@ Made for the infrastructure setup in https://github.com/crpier/subsistence_infra
 - Make the docker image slimmer with multi stage builds or smth
 - Add pre-commit maybe
 - Choose output port via config
+- create sa in manifests
